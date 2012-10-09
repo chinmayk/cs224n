@@ -34,15 +34,35 @@ public class PMIModel implements WordAligner {
     Alignment alignment = new Alignment();
     int numSourceWords = sentencePair.getSourceWords().size();
     int numTargetWords = sentencePair.getTargetWords().size();
-
+    List<String> sourceWords = sentencePair.getSourceWords();
+    List<String> targetWords = sentencePair.getTargetWords();
+    //Only set alignments to NULL words in the target
+    targetWords.add(NULL_WORD);
+    int maxIndex = 0; double maxProbability = 0.0; double probability=0.0;
     for (int srcIndex = 0; srcIndex < numSourceWords; srcIndex++) {
-//      int tgtIndex = srcIndex;
+        maxIndex = 0;
+        maxProbability= 0.0;
+        for(int tgtIndex = 0; tgtIndex < numTargetWords+1; tgtIndex++) {
+           probability = (this.sourceTargetCounts.getCount(sourceWords.get(srcIndex), targetWords.get(tgtIndex))/
+                   (this.sourceCounts.getCount(sourceWords.get(srcIndex))* this.targetCounts.getCount(targetWords.get(tgtIndex))));
+
+           if(probability > maxProbability) {
+               maxIndex = tgtIndex;
+               maxProbability = probability;
+           }
+
+        }
+        if(maxIndex == numTargetWords) {
+            //Set alignment to -1
+            alignment.addPredictedAlignment(srcIndex, -1);
+        }
+        alignment.addPredictedAlignment(srcIndex, maxIndex);
+// int tgtIndex = srcIndex;
 //      if (tgtIndex < numTargetWords) {
 //        // Discard null alignments
 //        alignment.addPredictedAlignment(tgtIndex, srcIndex);
 //      }
 
-        int tgtIndex = 0;
 
     }
     return alignment;
