@@ -18,50 +18,55 @@ import java.util.List;
  */
 public class PMIModel implements WordAligner {
 	
-	  private static final long serialVersionUID = 1315751943476440535L;
-	  
-	  // TODO: Use arrays or Counters for collecting sufficient statistics
-	  // from the training data.
-	  private CounterMap<String, String> sourceTargetCounts;
-	  private Counter<String> sourceCounts;
-	  private Counter<String> targetCounts;
-	  
-	    public Alignment align(SentencePair sentencePair) {
-	    // Placeholder code below. 
-	    // TODO Implement an inference algorithm for Eq.1 in the assignment
-	    // handout to predict alignments based on the counts you collected with train().
-	    Alignment alignment = new Alignment();
-	        
-	    List<String> sourceWords = sentencePair.getSourceWords();
-	    List<String> targetWords = sentencePair.getTargetWords();
-	    
-	    int numSourceWords = sourceWords.size();
-	    int numTargetWords = targetWords.size();
-	    
-	    for (int srcIndex = 0; srcIndex < numSourceWords; srcIndex++) {
-			//      int tgtIndex = srcIndex;
-			//      if (tgtIndex < numTargetWords) {
-			//        // Discard null alignments
-			//        alignment.addPredictedAlignment(tgtIndex, srcIndex);
-			//      }
-	        int tgtIndex = 0;
-	        double maxMI = 0;
-	        double MI = 0;
-	        for(int i = 0; i < numTargetWords; i++) {        	
-	        	MI = sourceTargetCounts.getCount(sourceWords.get(srcIndex), targetWords.get(i))/(sourceCounts.getCount(sourceWords.get(srcIndex))*targetCounts.getCount(targetWords.get(i)));
-	        	//        	System.out.print("MI"); System.out.println(MI);
-	        	if(MI>maxMI){
-	        		tgtIndex = i;
-	        		maxMI = MI;
-	        	}
-	        }
-	        //        System.out.print("srcIndex"); System.out.println(srcIndex);
-	        //        System.out.print("tgtIndex"); System.out.println(tgtIndex);
-	        alignment.addPredictedAlignment(tgtIndex, srcIndex);
-	    }
-	    return alignment;
-	  }
-  
+    private static final long serialVersionUID = 1315751943476440535L;
+    
+    // TODO: Use arrays or Counters for collecting sufficient statistics
+    // from the training data.
+    private CounterMap<String,String> sourceTargetCounts;
+    private Counter<String> sourceCounts;
+    private Counter<String> targetCounts;
+    
+    public Alignment align(SentencePair sentencePair) {
+    // Placeholder code below. 
+    // TODO Implement an inference algorithm for Eq.1 in the assignment
+    // handout to predict alignments based on the counts you collected with train().
+    Alignment alignment = new Alignment();
+    int numSourceWords = sentencePair.getSourceWords().size();
+    int numTargetWords = sentencePair.getTargetWords().size();
+    List<String> sourceWords = sentencePair.getSourceWords();
+    List<String> targetWords = sentencePair.getTargetWords();
+    //Only set alignments to NULL words in the target
+    targetWords.add(NULL_WORD);
+    int maxIndex = 0; double maxProbability = 0.0; double probability=0.0;
+    for (int srcIndex = 0; srcIndex < numSourceWords; srcIndex++) {
+        maxIndex = 0;
+        maxProbability= 0.0;
+        for(int tgtIndex = 0; tgtIndex < numTargetWords+1; tgtIndex++) {
+           probability = (this.sourceTargetCounts.getCount(sourceWords.get(srcIndex), targetWords.get(tgtIndex))/
+                   (this.sourceCounts.getCount(sourceWords.get(srcIndex))* this.targetCounts.getCount(targetWords.get(tgtIndex))));
+
+           if(probability > maxProbability) {
+               maxIndex = tgtIndex;
+               maxProbability = probability;
+           }
+
+        }
+        if(maxIndex == numTargetWords) {
+            //Set alignment to -1
+            alignment.addPredictedAlignment(srcIndex, -1);
+        }
+        alignment.addPredictedAlignment(srcIndex, maxIndex);
+// int tgtIndex = srcIndex;
+//      if (tgtIndex < numTargetWords) {
+//        // Discard null alignments
+//        alignment.addPredictedAlignment(tgtIndex, srcIndex);
+//      }
+
+
+    }
+    return alignment;
+  }
+
   public void train(List<SentencePair> trainingPairs) {
     sourceTargetCounts = new CounterMap<String,String>();
     this.targetCounts = new Counter<String>();
