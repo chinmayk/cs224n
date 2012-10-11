@@ -6,4 +6,5 @@
 *.aux
 *.pdf
 *.*latexmk
+*-mt/
 
