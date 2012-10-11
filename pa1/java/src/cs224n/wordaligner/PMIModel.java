@@ -36,9 +36,9 @@ public class PMIModel implements WordAligner {
     List<String> sourceWords = sentencePair.getSourceWords();
     List<String> targetWords = sentencePair.getTargetWords();
     //Only set alignments to NULL words in the target
-//    targetWords.add(NULL_WORD);
+    targetWords.add(NULL_WORD);
     int maxIndex = 0; double maxProbability = 0.0; double probability=0.0;
-    for (int srcIndex = 0; srcIndex < numSourceWords; srcIndex++) {
+    for (int srcIndex = 0; srcIndex < numSourceWords+1; srcIndex++) {
         maxIndex = 0;
         maxProbability= 0.0;
         for(int tgtIndex = 0; tgtIndex < numTargetWords; tgtIndex++) {
@@ -51,11 +51,9 @@ public class PMIModel implements WordAligner {
            }
 
         }
-//        if(maxIndex == numTargetWords) {
-//            //Set alignment to -1
-//            alignment.addPredictedAlignment(srcIndex, -1);
-//        }
-        alignment.addPredictedAlignment(srcIndex, maxIndex);
+        if(maxIndex != numTargetWords) {
+            alignment.addPredictedAlignment(srcIndex, maxIndex);
+        }
 // int tgtIndex = srcIndex;
 //      if (tgtIndex < numTargetWords) {
 //        // Discard null alignments
@@ -74,6 +72,8 @@ public class PMIModel implements WordAligner {
     for(SentencePair pair : trainingPairs){
       List<String> targetWords = pair.getTargetWords();
       List<String> sourceWords = pair.getSourceWords();
+        //Add a NULL alignment to each possible source sentence
+      targetWords.add(NULL_WORD);
       for(String source : sourceWords){
           for(String target : targetWords){
           sourceTargetCounts.incrementCount(source, target, 1.0);
@@ -82,7 +82,7 @@ public class PMIModel implements WordAligner {
         }
       }
     }
-      //Add a NULL alignment to each possible source word and target word
+
 //      for(String source: sourceCounts.keySet()) {
 //          sourceTargetCounts.setCount(source, NULL_WORD, 1.0);
 //      }
