@@ -1,0 +1,39 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\setlength{\textheight}{8.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textwidth}{6.25in}
+\setlength{\oddsidemargin}{0.125in}
+\setlength{\evensidemargin}{0.125in}
+
+
+\begin{document}
+\centerline{\sc \huge CS224N PS1 Report } %Title
+\vspace{.5pc}
+\centerline{\sc Will Y. Zou, Chinmay Kulkarni} %author/subtitle
+\centerline{\sc}
+\vspace{3pc}
+\setlength\parindent{0in}
+\section{Evaluation for PMI and IBM Models 1 and 2}
+We implemented PMI and IBM Models 1 and 2 for translation word alignment. The models were trained on 10k sentences in each source language, and ran for 100 iterations each. The reported numbers are AER evaluated on the test set of the particular language pair. 
+\begin{table}[bht]
+\centering
+\begin{small}
+\caption{AER results table for word alignment experiments}
+\label{tab:summary}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+                       & \bf{French-English} & \bf{Hindi-English} & \bf{Chinese-English} \\
+\hline
+PMI & 92.1\%   & 50.9\%                &   85.6\%      \\
+\hline
+Model 1          & 93.9\%   & 53.3\%          &   86.5\%   \\
+\hline
+Model 2          & 93.9\%   & 53.3\%          &   86.5\%   \\
+\hline
+\end{tabular}
+\end{small}
+\end{table}
+\end{document}
