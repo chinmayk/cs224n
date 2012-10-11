@@ -104,7 +104,7 @@ public class Counter <E> implements Serializable {
   /**
    * Finds the total of all counts in the counter.  This implementation iterates
    * through the entire counter every time this method is called.
-   *
+   * 
    * @return the counter's total
    */
   public double totalCount() {
@@ -114,7 +114,7 @@ public class Counter <E> implements Serializable {
     }
     return total;
   }
-
+  
   /**
    * Finds the key with maximum count.  This is a linear operation, and ties are broken arbitrarily.
    *

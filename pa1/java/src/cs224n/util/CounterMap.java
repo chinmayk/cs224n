@@ -17,22 +17,22 @@ public class CounterMap<K, V> {
 
   private MapFactory<V, Double> mf;
   private Map<K, Counter<V>> counterMap;
-
+  
   // -----------------------------------------------------------------------
-
+  
   public CounterMap() {
     this(new MapFactory.HashMapFactory<K, Counter<V>>(), 
          new MapFactory.HashMapFactory<V, Double>());
   }
-
+  
   public CounterMap(MapFactory<K, Counter<V>> outerMF, 
                     MapFactory<V, Double> innerMF) {
     mf = innerMF;
     counterMap = outerMF.buildMap();
   }
-
+  
   // -----------------------------------------------------------------------
-
+  
   protected Counter<V> ensureCounter(K key) {
     Counter<V> valueCounter = counterMap.get(key);
     if (valueCounter == null) {
@@ -41,14 +41,14 @@ public class CounterMap<K, V> {
     }
     return valueCounter;
   }
-
+  
   /**
    * Returns the keys that have been inserted into this CounterMap.
    */
   public Set<K> keySet() {
     return counterMap.keySet();
   }
-
+  
   /**
    * Sets the count for a particular (key, value) pair.
    */
@@ -56,7 +56,7 @@ public class CounterMap<K, V> {
     Counter<V> valueCounter = ensureCounter(key);
     valueCounter.setCount(value, count);
   }
-
+  
   /**
    * Increments the count for a particular (key, value) pair.
    */
@@ -64,7 +64,7 @@ public class CounterMap<K, V> {
     Counter<V> valueCounter = ensureCounter(key);
     valueCounter.incrementCount(value, count);
   }
-
+  
   /**
    * Gets the count of the given (key, value) entry, or zero if that
    * entry is not present.  Does not create any objects.
@@ -75,7 +75,7 @@ public class CounterMap<K, V> {
       return 0.0;
     return valueCounter.getCount(value);
   }
-
+  
   /**
    * Gets the sub-counter for the given key.  If there is none, a
    * counter is created for that key, and installed in the CounterMap.
@@ -100,7 +100,7 @@ public class CounterMap<K, V> {
     }
     return total;
   }
-
+  
   /**
    * Returns the total number of (key, value) entries in the
    * CounterMap (not their total counts).
@@ -113,7 +113,7 @@ public class CounterMap<K, V> {
     }
     return total;
   }
-
+  
   /**
    * The number of keys in this CounterMap (not the number of
    * key-value entries -- use totalSize() for that)

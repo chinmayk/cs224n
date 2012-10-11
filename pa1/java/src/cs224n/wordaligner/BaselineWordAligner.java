@@ -14,13 +14,13 @@ import java.util.List;
  * @author Spence Green
  */
 public class BaselineWordAligner implements WordAligner {
-
+  
   private static final long serialVersionUID = 1315751943476440515L;
   
   // TODO: Use arrays or Counters for collecting sufficient statistics
   // from the training data.
   private CounterMap<String,String> sourceTargetCounts;
-
+  
   public Alignment align(SentencePair sentencePair) {
     // Placeholder code below. 
     // TODO Implement an inference algorithm for Eq.1 in the assignment

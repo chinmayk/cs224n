@@ -11,12 +11,12 @@ import java.util.List;
  * @author Spence Green
  */
 public interface WordAligner extends Serializable {
-
+  
   /**
    * A convenient string for the NULL word (for words aligned to NULL)
    */
   public static final String NULL_WORD = "<NULL>";
-
+  
   /**
    * Compute the best alignment for a given sentence pair. You can generate one-to-many 
    * alignments, that is one source word can be aligned to multiple target words. 
