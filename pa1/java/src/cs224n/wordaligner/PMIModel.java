@@ -39,7 +39,7 @@ public class PMIModel implements WordAligner {
     sourceWords.add(NULL_WORD);
 
     int maxIndex = 0; double maxProbability = 0.0; double probability=0.0;
-    for (int srcIndex = 0; srcIndex < numSourceWords; srcIndex++) {
+    for (int srcIndex = 0; srcIndex < numSourceWords+1; srcIndex++) {
         maxIndex = 0;
         maxProbability= 0.0;
         for(int tgtIndex = 0; tgtIndex < numTargetWords; tgtIndex++) {
@@ -52,7 +52,7 @@ public class PMIModel implements WordAligner {
            }
 
         }
-        if(maxIndex != numTargetWords) {
+        if(srcIndex != numSourceWords) {
             alignment.addPredictedAlignment(srcIndex, maxIndex);
         }
 // int tgtIndex = srcIndex;
@@ -83,7 +83,7 @@ public class PMIModel implements WordAligner {
         }
       }
        //Because Java is stupid, we need to remove the NULL word
-       sourceWords.remove(NULL_WORD);
+      sourceWords.remove(NULL_WORD);
     }
 
 //      for(String target: targetCounts.keySet()) {

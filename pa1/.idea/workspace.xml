@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36e2d0b5-46c3-477f-aabf-2e78dd0961b9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/report.tex" afterPath="$PROJECT_DIR$/report/report.tex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/cs224n/wordaligner/PMIModel.java" afterPath="$PROJECT_DIR$/java/src/cs224n/wordaligner/PMIModel.java" />
     </list>
     <ignored path="pa1.iws" />
@@ -76,7 +75,7 @@
       <file leaf-file-name="PMIModel.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/PMIModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="4" selection-start="2410" selection-end="2410" vertical-scroll-proportion="0.09589041">
+            <state line="41" column="54" selection-start="1569" selection-end="1569" vertical-scroll-proportion="0.30821916">
               <folding />
             </state>
           </provider>
@@ -519,7 +518,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/PMIModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="4" selection-start="2410" selection-end="2410" vertical-scroll-proportion="0.09589041">
+        <state line="41" column="54" selection-start="1569" selection-end="1569" vertical-scroll-proportion="0.30821916">
           <folding />
         </state>
       </provider>
