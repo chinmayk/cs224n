@@ -154,7 +154,7 @@ public class IBMModel2 implements WordAligner {
 		int mk;
 		double q;
 		double denom;
-
+		
 		// start E-M training
 		System.out.print("Start EM training ......\n");
 		// for loop over iterations
