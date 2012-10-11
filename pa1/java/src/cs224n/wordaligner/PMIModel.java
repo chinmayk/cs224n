@@ -35,8 +35,8 @@ public class PMIModel implements WordAligner {
     int numTargetWords = sentencePair.getTargetWords().size();
     List<String> sourceWords = sentencePair.getSourceWords();
     List<String> targetWords = sentencePair.getTargetWords();
-    //Only set alignments to NULL words in the target
-//    targetWords.add(NULL_WORD);
+    //Only set alignments to NULL words in the targe
+//targetWords.add(NULL_WORD);
     int maxIndex = 0; double maxProbability = 0.0; double probability=0.0;
     for (int srcIndex = 0; srcIndex < numSourceWords; srcIndex++) {
         maxIndex = 0;
@@ -82,10 +82,10 @@ public class PMIModel implements WordAligner {
         }
       }
     }
-      //Add a NULL alignment to each possible source word and target word
-//      for(String source: sourceCounts.keySet()) {
-//          sourceTargetCounts.setCount(source, NULL_WORD, 1.0);
-//      }
+      //Add a NULL alignment to each possible source word 
+      //for(String source: sourceCounts.keySet()) {
+        //  sourceTargetCounts.setCount(source, NULL_WORD, 1.0);
+      //}
 
 //      for(String target: targetCounts.keySet()) {
 //          sourceTargetCounts.setCount(NULL_WORD, target, 1.0);
@@ -95,7 +95,7 @@ public class PMIModel implements WordAligner {
       //Make sure this is done after null alignments are added,
       // because otherwise, we'll have null word aligning with null word
 //      sourceCounts.setCount(NULL_WORD, 1.0);
-//      targetCounts.setCount(NULL_WORD, 1.0);
+     //targetCounts.setCount(NULL_WORD, 1.0);
       
       //normalize
       this.sourceCounts = Counters.normalize(sourceCounts);
