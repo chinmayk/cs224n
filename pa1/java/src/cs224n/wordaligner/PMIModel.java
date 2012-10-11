@@ -87,14 +87,14 @@ public class PMIModel implements WordAligner {
           sourceTargetCounts.setCount(source, NULL_WORD, 1.0);
       }
 
-      for(String target: targetCounts.keySet()) {
-          sourceTargetCounts.setCount(NULL_WORD, target, 1.0);
-      }
+//      for(String target: targetCounts.keySet()) {
+//          sourceTargetCounts.setCount(NULL_WORD, target, 1.0);
+//      }
       
       //Now, add NULL to both source and target.
       //Make sure this is done after null alignments are added,
       // because otherwise, we'll have null word aligning with null word
-      sourceCounts.setCount(NULL_WORD, 1.0);
+//      sourceCounts.setCount(NULL_WORD, 1.0);
       targetCounts.setCount(NULL_WORD, 1.0);
       
       //normalize
