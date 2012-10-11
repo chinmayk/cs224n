@@ -41,7 +41,7 @@ public class PMIModel implements WordAligner {
     for (int srcIndex = 0; srcIndex < numSourceWords; srcIndex++) {
         maxIndex = 0;
         maxProbability= 0.0;
-        for(int tgtIndex = 0; tgtIndex < numTargetWords+1; tgtIndex++) {
+        for(int tgtIndex = 0; tgtIndex < numTargetWords; tgtIndex++) {
            probability = (this.sourceTargetCounts.getCount(sourceWords.get(srcIndex), targetWords.get(tgtIndex))/
                    (this.sourceCounts.getCount(sourceWords.get(srcIndex))* this.targetCounts.getCount(targetWords.get(tgtIndex))));
 
