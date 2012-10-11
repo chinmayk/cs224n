@@ -1,3 +1,9 @@
 *.class
 *.log
+*.sync*
+*.gz
+*.*~
+*.aux
+*.pdf
+*.*latexmk
 
