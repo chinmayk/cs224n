@@ -63,12 +63,12 @@
       <file leaf-file-name="IBMModel1.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="51" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.8577406">
+            <state line="47" column="32" selection-start="1746" selection-end="1746" vertical-scroll-proportion="0.6903766">
               <folding>
                 <element signature="e#794#810#0" expanded="true" />
-                <element signature="e#3216#3224#0" expanded="true" />
-                <element signature="e#3277#3285#0" expanded="true" />
-                <element signature="e#3363#3379#0" expanded="true" />
+                <element signature="e#3211#3219#0" expanded="true" />
+                <element signature="e#3272#3280#0" expanded="true" />
+                <element signature="e#3358#3374#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -520,12 +520,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="51" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.8577406">
+        <state line="47" column="32" selection-start="1746" selection-end="1746" vertical-scroll-proportion="0.6903766">
           <folding>
             <element signature="e#794#810#0" expanded="true" />
-            <element signature="e#3216#3224#0" expanded="true" />
-            <element signature="e#3277#3285#0" expanded="true" />
-            <element signature="e#3363#3379#0" expanded="true" />
+            <element signature="e#3211#3219#0" expanded="true" />
+            <element signature="e#3272#3280#0" expanded="true" />
+            <element signature="e#3358#3374#0" expanded="true" />
           </folding>
         </state>
       </provider>
