@@ -120,6 +120,8 @@ public class IBMModel1 implements WordAligner {
         for(int i = 0; i < maxIterations; i++) {
             //Iterate over the dataset
             System.out.println("Iteration: " + i);
+
+            Counter<String> sourceCounts = new Counter<String>();
             for(SentencePair pair: trainingPairs) {
                 //E Step
                 //Accumulate counts
@@ -131,7 +133,16 @@ public class IBMModel1 implements WordAligner {
                 double innerSum = 0.0;
                 for(String sourceWord : sourceWordsList) {
 
-                    double totalSourceCounts = this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
+
+                    double totalSourceCounts = 0.0;
+                    if(sourceCounts.containsKey(sourceWord)) {
+                        totalSourceCounts = sourceCounts.getCount(sourceWord);
+                    }
+                    else {
+                        totalSourceCounts = this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
+                        sourceCounts.setCount(sourceWord, totalSourceCounts);
+                    }
+
                     for(String targetWord : targetWordsList) {
                         ///////E step
                         //For first iteration

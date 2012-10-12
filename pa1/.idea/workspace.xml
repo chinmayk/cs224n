@@ -63,12 +63,13 @@
       <file leaf-file-name="IBMModel1.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="127" selection-start="5737" selection-end="5737" vertical-scroll-proportion="0.83682007">
+            <state line="138" column="64" selection-start="5108" selection-end="5108" vertical-scroll-proportion="0.20920502">
               <folding>
                 <element signature="e#794#810#0" expanded="true" />
                 <element signature="e#3211#3219#0" expanded="true" />
                 <element signature="e#3272#3280#0" expanded="true" />
                 <element signature="e#3358#3374#0" expanded="true" />
+                <element signature="e#4400#4408#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -513,19 +514,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/util/Counter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="16" selection-start="2691" selection-end="2691" vertical-scroll-proportion="0.3328767">
+        <state line="60" column="16" selection-start="1523" selection-end="1523" vertical-scroll-proportion="0.3328767">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="127" selection-start="5737" selection-end="5737" vertical-scroll-proportion="0.83682007">
+        <state line="138" column="64" selection-start="5108" selection-end="5108" vertical-scroll-proportion="0.20920502">
           <folding>
             <element signature="e#794#810#0" expanded="true" />
             <element signature="e#3211#3219#0" expanded="true" />
             <element signature="e#3272#3280#0" expanded="true" />
             <element signature="e#3358#3374#0" expanded="true" />
+            <element signature="e#4400#4408#0" expanded="true" />
           </folding>
         </state>
       </provider>
