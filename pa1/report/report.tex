@@ -1,0 +1,48 @@
+% by LaTeX newbie
+\documentclass[letterpaper]{article}
+
+\author{Chinmay Kulkarni, Will Zou}
+\title{Assignment 1}
+
+\begin{document}
+\maketitle
+
+\section{Word alignment}
+We implemented PMI and IBM Models 1 and 2 for translation word alignment. The models were trained on 10k sentences in each source language, and ran for 100 iterations each. The reported numbers are AER evaluated on the test set of the particular language pair. 
+\subsection{PMI Model}
+\subsubsection{Error analysis} % (fold)
+\label{ssub:error_analysis}
+
+\textbf{Assumptions on word order} The PMI model only counts the number of sentences where words appear at that exact offset in both languages. So, it makes no assumptions about word order, but also learns very little-- in particular, since it can only use each sentence pair as an independent data point. 
+
+Therefore, it cannot learn word alignments for one pair of words based on high-confidence alignments for other words (like the IBM models).
+
+\textbf{Common words, uncommon words} Common words in language pairs are confused easily: the word \textit{et} in French is likely to appear in sentences whose English translations contain words like \textit{and}, \textit{in}, \textit{of} etc. Since PMI has no way to disambiguate these,  \textit{and}, \textit{in}, \textit{of} are all likely to align to \textit{et}.
+
+\textbf{Good alignments} when words are relatively uncommon, and have few synonyms in each language (e.g. \textit{ministre} and \textit{minister})
+
+\textbf{Aligning too many words to a word}: Because the PMI model depends on sentence counts, too many words get aligned to common words.
+% subsubsection error_analysis (end)
+\begin{table}[tb]
+	\caption{AER Results}
+	\label{fig:AERResults}
+	\begin{center}
+		\begin{tabular}{lccc}
+
+		\hline
+		\textbf{~} & \textbf{French-English} & \textbf{Hindi English} & \textbf{Chinese English} \\
+		\hline
+			 PMI & 0.1818/0.1114/0.8450 & 0.0833/0.0646/0.9272 & 0.0779/0.0456/0.9425 \\
+			 IBM Model 1 &  & & \\
+			 IBM Model 1 (large) &  & & \\
+		\hline
+
+		\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\subsection{IBM Model 1}
+
+
+\end{document}

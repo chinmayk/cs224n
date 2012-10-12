@@ -1,3 +1,11 @@
 *.class
+.DS_Store
 *.log
+*.sync*
+*.gz
+*.*~
+*.aux
+*.pdf
+*.*latexmk
+*-mt/
 
