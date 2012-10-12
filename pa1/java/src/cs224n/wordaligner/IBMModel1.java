@@ -40,13 +40,16 @@ public class IBMModel1 implements WordAligner {
             double best_p = 0.0; int best_j = 0;
             for(int j = 0; j < targetWords.size(); j++) {
                 if(this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(j)) > best_p) {
-                    System.out.print("previous best p: best_p");
                     best_j = j; best_p = this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(j));
                 }
+
+//                System.out.println("Source " + sourceWords.get(i) + "Target " + targetWords.get(j) + this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(j)));
             }
             if(sourceWords.get(best_j) != NULL_WORD) {
-                alignment.addPredictedAlignment(i, best_j);
+                alignment.addPredictedAlignment(best_j, i);
             }
+
+//            System.out.println("Source " + sourceWords.get(i) + " assigned " + targetWords.get(best_j));
 
         }
 
@@ -132,15 +135,16 @@ public class IBMModel1 implements WordAligner {
                         if(i == 0) {
                             sourceTargetWordCounts.incrementCount(sourceWord, targetWord, uniformProbability);
                             sourceWordsCount.incrementCount(sourceWord, uniformProbability);
-                            System.out.print("First iteration: uniform probablity" + uniformProbability);
+
+                            this.sourceTargetProbabilitiesMap.setCount(sourceWord, targetWord, uniformProbability);
+
                         }
                         else {
 
-                            double delta = this.sourceTargetProbabilitiesMap.getCount(sourceWord, targetWord);
-                            double phi = this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
+                            double delta = this.sourceTargetProbabilitiesMap.getCount(sourceWord, targetWord)/this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
                             sourceTargetWordCounts.incrementCount(sourceWord, targetWord, delta);
                             sourceWordsCount.incrementCount(sourceWord, delta);
-                            System.out.print("Incrementing with delta" + delta + "phi" + phi);
+
                         }
 
                     }
@@ -155,7 +159,7 @@ public class IBMModel1 implements WordAligner {
                 for(String englishWord : this.sourceTargetProbabilitiesMap.getCounter(frenchWord).keySet()) {
                     this.sourceTargetProbabilitiesMap.setCount(frenchWord, englishWord, sourceTargetWordCounts.getCount(frenchWord, englishWord)/sourceWordsCount.getCount(frenchWord));
 
-                    System.out.print("For french word, " + frenchWord + "For english word: " + englishWord + "new t(english|french) =" +  this.sourceTargetProbabilitiesMap.getCount(frenchWord, englishWord));
+                    System.out.println("For french word, " + frenchWord + "For english word: " + englishWord + "new t(english|french) =" +  this.sourceTargetProbabilitiesMap.getCount(frenchWord, englishWord));
                 }
             }
         }

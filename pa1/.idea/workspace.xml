@@ -63,12 +63,12 @@
       <file leaf-file-name="IBMModel1.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="142" column="92" selection-start="5662" selection-end="5662" vertical-scroll-proportion="0.29288703">
+            <state line="42" column="108" selection-start="1476" selection-end="1476" vertical-scroll-proportion="0.58577406">
               <folding>
                 <element signature="e#794#810#0" expanded="true" />
-                <element signature="e#2983#2991#0" expanded="true" />
-                <element signature="e#3044#3052#0" expanded="true" />
-                <element signature="e#3130#3146#0" expanded="true" />
+                <element signature="e#3215#3223#0" expanded="true" />
+                <element signature="e#3276#3284#0" expanded="true" />
+                <element signature="e#3362#3378#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -476,11 +476,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/Alignment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="26" selection-start="1953" selection-end="1967" vertical-scroll-proportion="0.63829786" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/PMIModel_alt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="26" selection-start="0" selection-end="3875" vertical-scroll-proportion="-0.63829786">
@@ -495,13 +490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/src/cs224n/util/Counter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="16" selection-start="2477" selection-end="2851" vertical-scroll-proportion="0.3328767">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/PMIModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="41" column="54" selection-start="1568" selection-end="1569" vertical-scroll-proportion="0.760274">
@@ -509,14 +497,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/cs224n/util/Counter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="16" selection-start="1523" selection-end="1531" vertical-scroll-proportion="0.43561643">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/cs224n/util/CounterMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="37" selection-start="2317" selection-end="2383" vertical-scroll-proportion="0.5589041">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/Alignment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="14" selection-start="1554" selection-end="1554" vertical-scroll-proportion="0.3328767">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="92" selection-start="5662" selection-end="5662" vertical-scroll-proportion="0.29288703">
+        <state line="42" column="108" selection-start="1476" selection-end="1476" vertical-scroll-proportion="0.58577406">
           <folding>
             <element signature="e#794#810#0" expanded="true" />
-            <element signature="e#2983#2991#0" expanded="true" />
-            <element signature="e#3044#3052#0" expanded="true" />
-            <element signature="e#3130#3146#0" expanded="true" />
+            <element signature="e#3215#3223#0" expanded="true" />
+            <element signature="e#3276#3284#0" expanded="true" />
+            <element signature="e#3362#3378#0" expanded="true" />
           </folding>
         </state>
       </provider>
