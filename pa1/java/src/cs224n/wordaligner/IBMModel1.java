@@ -179,7 +179,7 @@ public class IBMModel1 implements WordAligner {
             }
         }
 
-        this.sourceTargetProbabilitiesMap.toString();
+        System.out.println(this.sourceTargetProbabilitiesMap.toString());
 
         for(SentencePair pair : trainingPairs) {
 
