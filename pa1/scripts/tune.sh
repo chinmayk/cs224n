@@ -17,9 +17,9 @@ ln -s /afs/ir/class/cs224n/pa1/data/mt/mt-dev.en
 ln -s /afs/ir/class/cs224n/pa1/data/mt/mt-dev-test.fr
 ln -s /afs/ir/class/cs224n/pa1/data/mt/mt-dev-test.en
 
-export HOME=~/cs224n/pa1-mt
-export MOSES=/afs/ir/class/cs224n/bin/mosesdecoder
-export GIZA=/afs/ir/class/cs224n/bin/giza-pp-read-only/external-bin-dir
+HOME=~/cs224n/pa1-mt
+MOSES=/afs/ir/class/cs224n/bin/mosesdecoder
+GIZA=/afs/ir/class/cs224n/bin/giza-pp-read-only/external-bin-dir
 
 #Get alignments
 java -cp ~/cs224n/pa1/java/classes cs224n.assignments.WordAlignmentTester \
