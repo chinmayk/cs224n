@@ -130,7 +130,8 @@ public class IBMModel1 implements WordAligner {
                 double denominator = 1.0;
                 double innerSum = 0.0;
                 for(String sourceWord : sourceWordsList) {
-                    innerSum = 0.0;
+
+                    double totalSourceCounts = this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
                     for(String targetWord : targetWordsList) {
                         ///////E step
                         //For first iteration
@@ -139,11 +140,11 @@ public class IBMModel1 implements WordAligner {
                             sourceWordsCount.incrementCount(sourceWord, uniformProbability);
 
                             this.sourceTargetProbabilitiesMap.setCount(sourceWord, targetWord, uniformProbability);
-
+                            totalSourceCounts = uniformProbability;
                         }
                         else {
 
-                            double delta = this.sourceTargetProbabilitiesMap.getCount(sourceWord, targetWord)/this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
+                            double delta = this.sourceTargetProbabilitiesMap.getCount(sourceWord, targetWord)/totalSourceCounts;
                             sourceTargetWordCounts.incrementCount(sourceWord, targetWord, delta);
                             sourceWordsCount.incrementCount(sourceWord, delta);
 
