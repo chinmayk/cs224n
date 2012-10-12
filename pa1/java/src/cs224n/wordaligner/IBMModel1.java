@@ -18,10 +18,9 @@ import java.util.List;
  */
 
 public class IBMModel1 implements WordAligner {
-	
 	// IBMModel class
 	
-	private double[][] t_s_t;
+	private double[][] t_t_s;
 	private double[][][][] q_j_i_l_m;
 	private int maxIter = 100;
 	
@@ -47,18 +46,18 @@ public class IBMModel1 implements WordAligner {
 			// calculate denominator
 			for(int j = 0; j<numTargetWords; j++){
 				// [fixed: zero array indexing]
-				denom += this.q_j_i_l_m[j][i][numTargetWords-1][numSourceWords-1]*this.t_s_t[i][j];
+				denom += this.q_j_i_l_m[j][i][numSourceWords-1][numTargetWords-1]*this.t_t_s[j][i];
 			}
 			// alignment = argmax (q*t/denom)
 			for(int j = 0; j<numTargetWords; j++){
-				a = this.q_j_i_l_m[j][i][numTargetWords-1][numSourceWords-1]*this.t_s_t[i][j]/denom;
+				a = this.q_j_i_l_m[j][i][numSourceWords-1][numTargetWords-1]*this.t_t_s[j][i]/denom;
 				if(a > a_max){
 					a_max = a;
 					j_opt = j;
 				}
 			}
 			// add alignment to result
-			alignment.addPredictedAlignment(j_opt, i);
+			alignment.addPredictedAlignment(i, j_opt);
 		}
 		return alignment;
 	}
@@ -68,8 +67,8 @@ public class IBMModel1 implements WordAligner {
 		
 		// --- figure out some statistics and build hashmaps --- [checking...]
 		System.out.println("Computing statistics and building hashmaps......");
-		int Ms = 0; // # words in longest source language
-		int Lt = 0; // # words in longest target language
+		int Mt = 0; // # words in longest target language
+		int Ls = 0; // # words in longest source language
 		// Word-to-Index maps
 		HashMap<String, Integer> targetWordIndexMap = new HashMap<String, Integer>();
 		HashMap<String, Integer> sourceWordIndexMap = new HashMap<String, Integer>();
@@ -82,11 +81,11 @@ public class IBMModel1 implements WordAligner {
 		
 		for(SentencePair pair : trainingPairs){
 			// work out length of longest target/source lan sentence?
-			if(pair.getTargetWords().size()>Lt){
-				Lt = pair.getTargetWords().size();
+			if(pair.getTargetWords().size()>Mt){
+				Mt = pair.getTargetWords().size();
 			}
-			if(pair.getSourceWords().size()>Ms){
-				Ms = pair.getSourceWords().size();
+			if(pair.getSourceWords().size()>Ls){
+				Ls = pair.getSourceWords().size();
 			}
 			
 			// construct target Word-Index or Index-Word hashmaps
@@ -97,9 +96,6 @@ public class IBMModel1 implements WordAligner {
 					targetWordIndex += 1;
 				}
 			}
-			// adding null
-			targetWordIndexMap.put(null, targetWordIndex);
-			targetIndexWordMap.put(targetWordIndex, null);
 			
 			for(String sourceWord : pair.getSourceWords()){				
 				if(!sourceWordIndexMap.containsKey(sourceWord)){
@@ -108,9 +104,9 @@ public class IBMModel1 implements WordAligner {
 					sourceWordIndex += 1; 
 				}
 			}
-			// adding null			
-			sourceWordIndexMap.put(null, sourceWordIndex);
-			sourceIndexWordMap.put(sourceWordIndex, null);
+			// adding NULL_WORD
+			sourceWordIndexMap.put(NULL_WORD, sourceWordIndex);
+			sourceIndexWordMap.put(sourceWordIndex, NULL_WORD);			
 		}
 		
 		// size of target language vocabulary 
@@ -121,19 +117,14 @@ public class IBMModel1 implements WordAligner {
 		// initialize parameters
 		System.out.println("Initialize parameters ......");
 		// t(t/s)
-		this.t_s_t = new double[numSourceWords][numTargetWords];
+		this.t_t_s = new double[numTargetWords][numSourceWords];
 		// q(j/i, l, m)
-		this.q_j_i_l_m = new double[Lt+1][Ms][Lt][Ms]; // 4-dimensional array with first dim including a null position
+		this.q_j_i_l_m = new double[Mt][Ls+1][Ls][Mt]; // 4-dimensional array with first dim including a null position
 		
 		// initialize t(t/s)
-		for(int s=0; s<numSourceWords; s++){
-			float sum_T = 0;
+		for(int s=0; s<numSourceWords; s++){			
 			for(int t=0; t<numTargetWords; t++){
-				t_s_t[s][t]= Math.random();
-				sum_T += t_s_t[s][t];
-			}			
-			for(int t=0; t<numTargetWords; t++){
-				t_s_t[s][t]=t_s_t[s][t]/sum_T;
+				t_t_s[t][s]= 1.0/numTargetWords; // Math.random();
 			}
 		}
 				
@@ -149,67 +140,64 @@ public class IBMModel1 implements WordAligner {
 		for(int iter = 1; iter <=maxIter; iter++){
 			System.out.print(iter); System.out.print(", ");
 			if(iter%20==0){
-				System.out.print("\n");			  
+				System.out.print("\n");
 			}
 			// ----- Accumulate counts -----
-			// create new count variables
-			// c(t, s) count of a pair of target and source words appearing together
-			CounterMap<String, String> c_t_s = new CounterMap<String,String>();
-			// c(t) count of target words appearing
-			Counter<String> c_t = new Counter<String>();
-			// 
-			double[][][][] c_j_given_i_l_m = new double[Lt+1][Ms][Lt][Ms]; // 4-dimensional array with first dimension j null option
-			double[][][] c_i_l_m = new double[Ms][Lt][Ms]; // 3-dimensional array
+			// initialize all counters at start of each E-M iteration (create new count variables)
+			// c(s, t) count of a pair of source and target words appearing together
+			CounterMap<String, String> c_s_t = new CounterMap<String,String>();
+			// c(s) count of source words appearing
+			Counter<String> c_s = new Counter<String>();
+			double[][][][] c_j_given_i_l_m = new double[Mt][Ls+1][Ls][Mt]; // 4-dimensional array with first dimension j null option
+			double[][][] c_i_l_m = new double[Ls+1][Ls][Mt]; // 3-dimensional array
 			double delta;
 			
 			// loop over sentence pair examples
 			for(SentencePair pair : trainingPairs){
 				List<String> targetWords = pair.getTargetWords();
-				List<String> sourceWords = pair.getSourceWords();
-				// add null to sourceWords? 
-				mk = sourceWords.size();
-				for(int i = 0 ; i<mk; i++){ // use index because need to access arrays
-					// produce t and q values
-					// [TODO] Change this (q) for model 2
-					q = 1.0/(1.0+(double)(mk));	    	  
+				List<String> sourceWords = pair.getSourceWords();			
+				lk = sourceWords.size();
+				for(int i = 0 ; i<lk+1; i++){
 					// use a for-loop to first calculate the denominator for delta value
 					denom = 0;
-					lk = targetWords.size();
-					for(int j = 0; j<lk+1; j++){
-						if(j != 0){
-							denom += q*t_s_t[(int)(sourceWordIndexMap.get(sourceWords.get(i)))][(int)(targetWordIndexMap.get(targetWords.get(j-1)))];
+					mk = targetWords.size();					
+					for(int j = 0; j<mk; j++){
+						q = 1.0/(1.0+(double)(mk));
+						if(i != 0){
+							denom += q*t_t_s[(int)(targetWordIndexMap.get(targetWords.get(j)))][(int)(sourceWordIndexMap.get(sourceWords.get(i-1)))];
 						}
 						else{
-							denom += q*t_s_t[(int)(sourceWordIndexMap.get(sourceWords.get(i)))][(int)(targetWordIndexMap.get(null))];
+							denom += q*t_t_s[(int)(targetWordIndexMap.get(targetWords.get(j)))][(int)(sourceWordIndexMap.get(NULL_WORD))];
 						}
 					}
-					for(int j = 0; j<lk+1; j++){ // [TODO] include NULL
+					
+					for(int j = 0; j<mk; j++){
+						q = 1.0/(1.0+(double)(mk));
 						// calculate delta
-						if(j != 0){
-							// use zero position
-							delta = q*t_s_t[(int)(sourceWordIndexMap.get(sourceWords.get(i)))][(int)(targetWordIndexMap.get(targetWords.get(j-1)))]/denom;
-							c_t_s.incrementCount(targetWords.get(j-1), sourceWords.get(i), delta);
-							c_t.incrementCount(targetWords.get(j-1), delta);
+						if(i != 0){
+							delta = q*t_t_s[(int)(targetWordIndexMap.get(targetWords.get(j)))][(int)(sourceWordIndexMap.get(sourceWords.get(i-1)))]/denom;
+							c_s_t.incrementCount(sourceWords.get(i-1), targetWords.get(j), delta);
+							c_s.incrementCount(sourceWords.get(i-1), delta);
 						}
 						else{
-							delta = q*t_s_t[(int)(sourceWordIndexMap.get(sourceWords.get(i)))][(int)(targetWordIndexMap.get(null))]/denom;
-							c_t_s.incrementCount(null, sourceWords.get(i), delta);
-							c_t.incrementCount(null, delta);
+							delta = q*t_t_s[(int)(targetWordIndexMap.get(targetWords.get(j)))][(int)(sourceWordIndexMap.get(NULL_WORD))]/denom;
+							c_s_t.incrementCount(NULL_WORD, targetWords.get(j), delta);
+							c_s.incrementCount(NULL_WORD, delta);
 						}
-												
+						
 						// note zero array indices
 						c_j_given_i_l_m[j][i][lk-1][mk-1] += delta;
 						c_i_l_m[i][lk-1][mk-1] += delta;
 						
 						// re-normalize q_j_i_l_m
-						q_j_i_l_m[j][i][lk-1][mk-1] = q; //c_j_given_i_l_m[j][i][lk-1][mk-1]/c_i_l_m[i][lk-1][mk-1];
+						q_j_i_l_m[j][i][lk-1][mk-1] = 1.0/(1.0+(double)(mk)); //c_j_given_i_l_m[j][i][lk-1][mk-1]/c_i_l_m[i][lk-1][mk-1];
 					}
 				}
 			}
 			// ----- re-normalize t_s_t -----
 			for(int s=0; s<numSourceWords; s++){
 				for(int t=0; t<numTargetWords; t++){
-					t_s_t[s][t] = c_t_s.getCount(targetIndexWordMap.get(t), sourceIndexWordMap.get(s))/c_t.getCount(targetIndexWordMap.get(t));
+					t_t_s[t][s] = c_s_t.getCount(sourceIndexWordMap.get(s), targetIndexWordMap.get(t))/c_s.getCount(sourceIndexWordMap.get(s));
 				}
 			}
 		}
