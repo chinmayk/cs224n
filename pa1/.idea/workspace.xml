@@ -63,12 +63,12 @@
       <file leaf-file-name="IBMModel1.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="108" selection-start="1476" selection-end="1476" vertical-scroll-proportion="0.58577406">
+            <state line="47" column="51" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.8577406">
               <folding>
                 <element signature="e#794#810#0" expanded="true" />
-                <element signature="e#3215#3223#0" expanded="true" />
-                <element signature="e#3276#3284#0" expanded="true" />
-                <element signature="e#3362#3378#0" expanded="true" />
+                <element signature="e#3216#3224#0" expanded="true" />
+                <element signature="e#3277#3285#0" expanded="true" />
+                <element signature="e#3363#3379#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -513,19 +513,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/Alignment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="14" selection-start="1554" selection-end="1554" vertical-scroll-proportion="0.3328767">
+        <state line="37" column="17" selection-start="1194" selection-end="1219" vertical-scroll-proportion="0.5383562">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="108" selection-start="1476" selection-end="1476" vertical-scroll-proportion="0.58577406">
+        <state line="47" column="51" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.8577406">
           <folding>
             <element signature="e#794#810#0" expanded="true" />
-            <element signature="e#3215#3223#0" expanded="true" />
-            <element signature="e#3276#3284#0" expanded="true" />
-            <element signature="e#3362#3378#0" expanded="true" />
+            <element signature="e#3216#3224#0" expanded="true" />
+            <element signature="e#3277#3285#0" expanded="true" />
+            <element signature="e#3363#3379#0" expanded="true" />
           </folding>
         </state>
       </provider>

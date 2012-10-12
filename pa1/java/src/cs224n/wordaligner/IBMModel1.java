@@ -46,6 +46,7 @@ public class IBMModel1 implements WordAligner {
 //                System.out.println("Source " + sourceWords.get(i) + "Target " + targetWords.get(j) + this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(j)));
             }
             if(sourceWords.get(best_j) != NULL_WORD) {
+
                 alignment.addPredictedAlignment(best_j, i);
             }
 
@@ -159,7 +160,7 @@ public class IBMModel1 implements WordAligner {
                 for(String englishWord : this.sourceTargetProbabilitiesMap.getCounter(frenchWord).keySet()) {
                     this.sourceTargetProbabilitiesMap.setCount(frenchWord, englishWord, sourceTargetWordCounts.getCount(frenchWord, englishWord)/sourceWordsCount.getCount(frenchWord));
 
-                    System.out.println("For french word, " + frenchWord + "For english word: " + englishWord + "new t(english|french) =" +  this.sourceTargetProbabilitiesMap.getCount(frenchWord, englishWord));
+//                    System.out.println("For french word, " + frenchWord + "For english word: " + englishWord + "new t(english|french) =" +  this.sourceTargetProbabilitiesMap.getCount(frenchWord, englishWord));
                 }
             }
         }
