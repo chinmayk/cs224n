@@ -43,7 +43,10 @@ public class IBMModel1 implements WordAligner {
                     best_j = j; best_p = this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(j));
                 }
             }
-            alignment.addPredictedAlignment(i, best_j);
+            if(sourceWords.get(best_j) != NULL_WORD) {
+                alignment.addPredictedAlignment(i, best_j);
+            }
+
         }
 //
 
@@ -149,7 +152,11 @@ public class IBMModel1 implements WordAligner {
             }
         }
 
+        for(SentencePair pair : trainingPairs) {
 
+            //In this pre-processing step, I also remove NULL words from all source sentences, because java doesn't
+            (pair.getSourceWords()).remove(NULL_WORD);
+        }
 
     }
 

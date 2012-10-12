@@ -63,12 +63,12 @@
       <file leaf-file-name="IBMModel1.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="121" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.75313807">
+            <state line="46" column="59" selection-start="1639" selection-end="1639" vertical-scroll-proportion="0.58158994">
               <folding>
                 <element signature="e#794#810#0" expanded="true" />
-                <element signature="e#2804#2812#0" expanded="true" />
-                <element signature="e#2865#2873#0" expanded="true" />
-                <element signature="e#2951#2967#0" expanded="true" />
+                <element signature="e#2878#2886#0" expanded="true" />
+                <element signature="e#2939#2947#0" expanded="true" />
+                <element signature="e#3025#3041#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -511,12 +511,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="121" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.75313807">
+        <state line="46" column="59" selection-start="1639" selection-end="1639" vertical-scroll-proportion="0.58158994">
           <folding>
             <element signature="e#794#810#0" expanded="true" />
-            <element signature="e#2804#2812#0" expanded="true" />
-            <element signature="e#2865#2873#0" expanded="true" />
-            <element signature="e#2951#2967#0" expanded="true" />
+            <element signature="e#2878#2886#0" expanded="true" />
+            <element signature="e#2939#2947#0" expanded="true" />
+            <element signature="e#3025#3041#0" expanded="true" />
           </folding>
         </state>
       </provider>
