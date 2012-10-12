@@ -134,35 +134,41 @@ public class IBMModel1 implements WordAligner {
                 double innerSum = 0.0;
                 for(String sourceWord : sourceWordsList) {
 
-
-                    double totalSourceCounts = 0.0;
-                    if(sourceCounts.containsKey(sourceWord)) {
-                        totalSourceCounts = sourceCounts.getCount(sourceWord);
-                    }
-                    else {
-                        totalSourceCounts = this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
-                        sourceCounts.setCount(sourceWord, totalSourceCounts);
-                    }
+//
+//                    double totalSourceCounts = 0.0;
+//                    if(sourceCounts.containsKey(sourceWord)) {
+//                        totalSourceCounts = sourceCounts.getCount(sourceWord);
+//                    }
+//                    else {
+//                        totalSourceCounts = this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
+//                        sourceCounts.setCount(sourceWord, totalSourceCounts);
+//                    }
 
                     for(String targetWord : targetWordsList) {
                         ///////E step
                         //For first iteration
+                        double denom = 0.0;
                         if(i == 0) {
                             sourceTargetWordCounts.incrementCount(sourceWord, targetWord, uniformProbability);
                             sourceWordsCount.incrementCount(sourceWord, uniformProbability);
 
                             this.sourceTargetProbabilitiesMap.setCount(sourceWord, targetWord, uniformProbability);
-                            totalSourceCounts = uniformProbability;
+
+                            denom = uniformProbability;
                         }
                         else {
-
-                            double delta = this.sourceTargetProbabilitiesMap.getCount(sourceWord, targetWord)/totalSourceCounts;
+                            for(String originalWord : sourceWordsList) {
+                                denom += this.sourceTargetProbabilitiesMap.getCount(originalWord, targetWord);
+//                                System.out.println("Denom is now" + denom);
+                            }
+                            double delta = this.sourceTargetProbabilitiesMap.getCount(sourceWord, targetWord)/denom;
                             sourceTargetWordCounts.incrementCount(sourceWord, targetWord, delta);
                             sourceWordsCount.incrementCount(sourceWord, delta);
 
                         }
 
                     }
+
                 }
 
 
