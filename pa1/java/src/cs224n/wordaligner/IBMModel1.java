@@ -48,6 +48,8 @@ public class IBMModel1 implements WordAligner {
             }
 
         }
+
+        sourceWords.remove(NULL_WORD);
 //
 
 
