@@ -136,10 +136,11 @@ public class IBMModel1 implements WordAligner {
                         }
                         else {
 
-                            double delta = this.sourceTargetProbabilitiesMap.getCount(sourceWord, targetWord)/this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
+                            double delta = this.sourceTargetProbabilitiesMap.getCount(sourceWord, targetWord);
+                            double phi = this.sourceTargetProbabilitiesMap.getCounter(sourceWord).totalCount();
                             sourceTargetWordCounts.incrementCount(sourceWord, targetWord, delta);
                             sourceWordsCount.incrementCount(sourceWord, delta);
-                            System.out.print("Incrementing with delta" + delta);
+                            System.out.print("Incrementing with delta" + delta + "phi" + phi);
                         }
 
                     }
