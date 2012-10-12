@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="36e2d0b5-46c3-477f-aabf-2e78dd0961b9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/report.tex" afterPath="$PROJECT_DIR$/report/report.tex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java" afterPath="$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java" />
     </list>
     <ignored path="pa1.iws" />
     <ignored path=".idea/workspace.xml" />
