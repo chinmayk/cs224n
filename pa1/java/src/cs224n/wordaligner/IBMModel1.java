@@ -39,8 +39,8 @@ public class IBMModel1 implements WordAligner {
         for(int i=0; i<sourceWords.size(); i++) {
             double best_p = 0.0; int best_j = 0;
             for(int j = 0; j < targetWords.size(); j++) {
-                if(this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(i)) > best_p) {
-                    best_j = j; best_p = this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(i));
+                if(this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(j)) > best_p) {
+                    best_j = j; best_p = this.sourceTargetProbabilitiesMap.getCount(sourceWords.get(i), targetWords.get(j));
                 }
             }
             alignment.addPredictedAlignment(i, best_j);

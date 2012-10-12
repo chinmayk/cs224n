@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36e2d0b5-46c3-477f-aabf-2e78dd0961b9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java" afterPath="$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java" />
     </list>
     <ignored path="pa1.iws" />
@@ -64,7 +63,7 @@
       <file leaf-file-name="IBMModel1.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="9" selection-start="1593" selection-end="1593" vertical-scroll-proportion="-1.4267782">
+            <state line="42" column="121" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.75313807">
               <folding>
                 <element signature="e#794#810#0" expanded="true" />
                 <element signature="e#2804#2812#0" expanded="true" />
@@ -512,7 +511,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/src/cs224n/wordaligner/IBMModel1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="9" selection-start="1593" selection-end="1593" vertical-scroll-proportion="-1.4267782">
+        <state line="42" column="121" selection-start="1489" selection-end="1489" vertical-scroll-proportion="0.75313807">
           <folding>
             <element signature="e#794#810#0" expanded="true" />
             <element signature="e#2804#2812#0" expanded="true" />
